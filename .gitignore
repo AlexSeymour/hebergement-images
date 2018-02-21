@@ -1,0 +1,7 @@
+*.pyc
+*.DS_STORE
+migrations/*
+*.sqlite3
+*.png
+*.jpg
+

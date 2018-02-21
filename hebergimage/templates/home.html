@@ -1,0 +1,32 @@
+{%extends 'base.html'%}
+
+{%block content %}
+<h1>Hebergeur d' images</h1>
+<hr>
+<div class="container">
+<div class="row">
+{% for image in images.object_list %}
+<div class="col-md-2">
+    <figure class="figure">
+        <img src="{{image.image.url}}" width="150px" height="150px"/>
+
+{%if image.user == request.user%}
+
+        <figcaption class="figure-caption"><a href="{% url 'delete-image' image.pk %}">Supprimer cette image</a></figcaption>
+{%endif%}
+    </figure>
+</div>
+{% endfor%}
+</div>
+{% if images.has_previous %}
+
+<a href="{% url 'images-page' images.previous_page_number %}">Page précédente</a>
+{% endif %}
+
+{% if images.has_next %}
+
+<a href="{% url 'images-page' images.next_page_number %}">Page suivante</a>
+
+{% endif %}
+</div>
+{%endblock %}
